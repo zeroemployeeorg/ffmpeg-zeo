@@ -1,0 +1,10 @@
+ffmpeg-zeo
+Copyright 2026 Ducktyper
+
+This product includes software conceptually inspired by:
+- ffmpeg-python (Karl Kroening) — Apache-2.0
+- pyffmpeg (deuteronomy-works) — Apache-2.0
+
+FFmpeg and ffprobe are separate programs. Optional downloaded builds from
+BtbN FFmpeg-Builds (LGPL variants) are not part of the Apache-2.0 ffmpeg-zeo
+source distribution. Do not ship GPL FFmpeg inside this package.

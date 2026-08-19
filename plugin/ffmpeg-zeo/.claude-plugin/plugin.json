@@ -1,0 +1,8 @@
+{
+  "name": "ffmpeg-zeo",
+  "version": "0.1.0",
+  "description": "Typed FFmpeg graphs, recipes, and MCP tools for coding agents",
+  "author": {
+    "name": "Ducktyper"
+  }
+}
