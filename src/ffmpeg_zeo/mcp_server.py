@@ -97,7 +97,17 @@ def _server() -> Any:
 
 
 def main() -> None:
-    mcp = _server()
+    try:
+        mcp = _server()
+    except ImportError as exc:
+        if exc.name and (exc.name == "mcp" or exc.name.startswith("mcp.")):
+            print(
+                "ffmpeg-zeo MCP support is not installed. "
+                'Run `pip install "ffmpeg-zeo[mcp]"`.',
+                file=sys.stderr,
+            )
+            raise SystemExit(1) from exc
+        raise
     import asyncio
 
     asyncio.run(mcp.run_stdio_async())

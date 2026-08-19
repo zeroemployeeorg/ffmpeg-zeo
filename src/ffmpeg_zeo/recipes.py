@@ -4,13 +4,14 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from pathlib import Path
+from typing import Any
 
 from ffmpeg_zeo.fluent import Stream, concat, input
-from ffmpeg_zeo.ir import Graph
+from ffmpeg_zeo.ir import Graph, OverwritePolicy
 
 
-def convert(src: str, dst: str, *, overwrite: str = "always") -> Graph:
-    return input(src).output(dst).overwrite(overwrite).build()  # type: ignore[arg-type]
+def convert(src: str, dst: str, *, overwrite: OverwritePolicy = "always") -> Graph:
+    return input(src).output(dst).overwrite(overwrite).build()
 
 
 def thumbnail(src: str, dst: str, *, time: float = 1.0) -> Graph:
@@ -88,11 +89,16 @@ def list_recipes() -> list[str]:
     return sorted(RECIPES)
 
 
-def run_recipe(name: str, **kwargs: object) -> Graph:
+def run_recipe(name: str, **kwargs: Any) -> Graph:
     if name not in RECIPES:
         raise KeyError(f"unknown recipe: {name}")
-    return RECIPES[name](**kwargs)  # type: ignore[arg-type]
+    return RECIPES[name](**kwargs)
 
 
-def convert_files(src: str | Path, dst: str | Path, **kwargs: object) -> Graph:
-    return convert(str(src), str(dst), **kwargs)  # type: ignore[arg-type]
+def convert_files(
+    src: str | Path,
+    dst: str | Path,
+    *,
+    overwrite: OverwritePolicy = "always",
+) -> Graph:
+    return convert(str(src), str(dst), overwrite=overwrite)

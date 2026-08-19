@@ -9,6 +9,7 @@ import tempfile
 from collections.abc import AsyncIterator, Callable
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
 from ffmpeg_zeo.bins import get_ffmpeg_bin
 from ffmpeg_zeo.compile import compile_graph
@@ -188,17 +189,17 @@ async def run_async(
     )
 
 
-def run(graph: Graph, **kwargs: object) -> RunResult:
-    return asyncio.run(run_async(graph, **kwargs))  # type: ignore[arg-type]
+def run(graph: Graph, **kwargs: Any) -> RunResult:
+    return asyncio.run(run_async(graph, **kwargs))
 
 
-async def iter_progress(graph: Graph, **kwargs: object) -> AsyncIterator[Progress]:
+async def iter_progress(graph: Graph, **kwargs: Any) -> AsyncIterator[Progress]:
     queue: asyncio.Queue[Progress | None] = asyncio.Queue()
 
     def _push(event: Progress) -> None:
         queue.put_nowait(event)
 
-    task = asyncio.create_task(run_async(graph, on_progress=_push, **kwargs))  # type: ignore[arg-type]
+    task = asyncio.create_task(run_async(graph, on_progress=_push, **kwargs))
     try:
         while True:
             if task.done() and queue.empty():

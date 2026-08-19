@@ -303,7 +303,6 @@ wheels = [
 
 [[package]]
 name = "ffmpeg-zeo"
-version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
@@ -335,7 +334,7 @@ requires-dist = [
     { name = "ty", marker = "extra == 'dev'", specifier = ">=0.0.1" },
     { name = "typer", specifier = ">=0.12" },
 ]
-provides-extras = ["mcp", "bin", "dev"]
+provides-extras = ["dev", "mcp"]
 
 [[package]]
 name = "h11"

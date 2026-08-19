@@ -47,7 +47,9 @@ def convert_cmd(
     overwrite: str = typer.Option("always"),
 ) -> None:
     """Convert a file using the one-liner recipe."""
-    graph = convert(str(src), str(dst), overwrite=overwrite)  # type: ignore[arg-type]
+    if overwrite not in {"always", "never"}:
+        raise typer.BadParameter("must be 'always' or 'never'", param_hint="overwrite")
+    graph = convert(str(src), str(dst), overwrite=overwrite)
     result = run(graph)
     _print_json(
         {"path": str(dst), "returncode": result.returncode, "argv": result.argv}
