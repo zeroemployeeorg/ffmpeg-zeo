@@ -30,7 +30,8 @@ You can instead set `FFMPEG_BINARY` and `FFPROBE_BINARY` to executable paths.
 
 ## Checks
 
-Run the same checks used by CI:
+Run these checks locally before opening a pull request. The repository has no
+GitHub Actions workflows: CI does not run on GitHub.
 
 ```bash
 uv run ruff format --check src tests examples
@@ -68,7 +69,10 @@ ffmpeg-zeo follows Semantic Versioning. Before 1.0, a minor release may
 contain breaking API changes. The package version is sourced from
 `src/ffmpeg_zeo/__init__.py`; the Claude plugin manifest is kept in sync.
 
-Maintainers release through `.github/workflows/publish.yml`:
+The repository has no GitHub Actions workflows: CI and trusted publishing do not
+run on GitHub (operator direction of 2026-09-25, under R-36). The steps below
+describe the removed `publish.yml` workflow and stay for reference until a new
+release path is set:
 
 1. Update `CHANGELOG.md` and verify all checks.
 2. Publish the candidate to TestPyPI with the manual workflow.

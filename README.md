@@ -2,7 +2,6 @@
 
 [![PyPI](https://img.shields.io/pypi/v/ffmpeg-zeo)](https://pypi.org/project/ffmpeg-zeo/)
 [![Python](https://img.shields.io/pypi/pyversions/ffmpeg-zeo)](https://pypi.org/project/ffmpeg-zeo/)
-[![CI](https://github.com/zeroemployeeorg/ffmpeg-zeo/actions/workflows/ci.yml/badge.svg)](https://github.com/zeroemployeeorg/ffmpeg-zeo/actions/workflows/ci.yml)
 [![License](https://img.shields.io/pypi/l/ffmpeg-zeo)](LICENSE)
 
 Typed FFmpeg filter graphs for Python applications, command-line automation,
